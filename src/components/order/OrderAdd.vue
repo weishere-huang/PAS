@@ -7,15 +7,15 @@
 
 <script>
 export default {
-  name: 'dashboard',
+  name: 'orderAdd',
   data () {
     return {
-      msg: 'Welcome to Your Dashboard'
+      msg: 'Welcome to Your OrderAdd'
     }
   },
   methods:{
       clickMsg(){
-          this.msg='I had change Dashboard';
+          this.msg='I had change OrderAdd';
       }
   }
 }

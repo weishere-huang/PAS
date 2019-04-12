@@ -3,15 +3,19 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import base from "./base.js";
+//import Axios from './AxiosRequest';
 
 import {
   Icon,
-  Button
+  Button,
+  message
 } from "ant-design-vue";
 Vue.config.productionTip = false;
 
 Vue.component(Icon.name, Icon);
 Vue.component(Button.name, Button);
+Vue.prototype.$message = message
 
 /* eslint-disable no-new */
 new Vue({
