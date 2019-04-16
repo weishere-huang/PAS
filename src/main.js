@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex'
 import App from './App';
+import store from './store'
 import router from './router';
 import base from "./base.js";
 //import Axios from './AxiosRequest';
@@ -26,5 +27,6 @@ new Vue({
   components: {
     App
   },
-  template: '<App/>'
+  template: '<App/>',
+  store
 })
