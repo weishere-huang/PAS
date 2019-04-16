@@ -122,5 +122,22 @@ export default [
             key: 'drawingsAdd',
             permissionCode: 'drawingsAdd'
         }]
+    },
+    {
+        menu: '生产记录',
+        permissionCode: 'history',
+        icon: '&#xe915;',
+        subMenu: [{
+            menu: '生产记录管理',
+            route: '/HistoryList',
+            key: 'historyList',
+            permissionCode: 'historyList'
+        },
+        {
+            menu: '生产报表',
+            route: '/Report',
+            key: 'report',
+            permissionCode: 'report'
+        }]
     }
 ]

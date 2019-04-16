@@ -7,11 +7,15 @@
             <p>生产计划排程系统</p>Changhong
           </div>
           <a-menu theme="dark" mode="horizontal" class="header-menu" :selectable="false">
-            
-            <a-menu-item v-for="(item,index) in headerMenuGroup" :key="index" @click="switchTab(item.key)">
+            <a-menu-item
+              v-for="(item,index) in headerMenuGroup"
+              :key="index"
+              @click="switchTab(item.key)"
+            >
               <span>
                 <i class="iconfont anticon" v-html="item.icon"></i>
-                <br>{{item.menu}}
+                <br>
+                {{item.menu}}
               </span>
             </a-menu-item>
           </a-menu>
@@ -128,7 +132,6 @@ Vue.component(Badge.name, Badge);
 Vue.component(Tooltip.name, Tooltip);
 
 const global = window;
-let isClear = false;
 export default {
   data() {
     return {
@@ -137,7 +140,7 @@ export default {
       isShow: true,
       cachedViews: [],
       version: versionInfo,
-      node_dev:process.env.NODE_ENV,
+      node_dev: process.env.NODE_ENV,
       tabsList: [
         {
           key: "dashboard",
@@ -187,7 +190,6 @@ export default {
       this.$router.push({ path: path ? path : chooseMenu.route });
     },
     closeTab(key) {
-      isClear = true;
       let chooseMenu = this.tabsList.find(item => item.key == key);
       const index = this.tabsList.indexOf(chooseMenu);
       this.tabsList = this.tabsList.filter(item => item.key !== key);
@@ -270,146 +272,9 @@ export default {
     this.initHeaderMenu();
   }
 };
-router.afterEach((to, from) => {
-  if (isClear) {
-    from.meta.keepAlive = true;
-    isClear = false;
-  }
-});
 </script>
 
 <style lang="less">
 @import url("./assets/font.css");
-#components-layout {
-  height: 100%;
-  .header {
-    background: #1d2f40;
-  }
-  .logo {
-    width: 120px;
-    margin: 10px 28px auto 0;
-    float: left;
-    line-height: 20px;
-    color: #cfcfcf;
-    text-align: center;
-    p {
-      margin: 0;
-      border-bottom: solid 1px #cfcfcf;
-    }
-  }
-  .main-tabs {
-    height: 48px;
-    ul {
-      float: left;
-      padding: 0;
-
-      list-style: none;
-      li {
-        -webkit-transition: all 0.1s ease-out;
-        position: relative;
-        float: left;
-        min-width: 120px;
-        padding: 0 30px;
-        height: 40px;
-        margin: 5px 5px auto 0;
-        //border: solid 1px #f0f0f0;
-        text-align: center;
-        line-height: 40px;
-        cursor: default;
-        color: #999;
-        &:hover {
-          background: #fff;
-          color: #333;
-          i {
-            //display: block;
-            opacity: 1;
-          }
-        }
-        &.active {
-          height: 43px;
-          background: #fff;
-          //border: solid 1px #eee;
-          border-bottom: 0;
-          color: #333;
-          &:hover {
-            background: #fff;
-          }
-        }
-        i {
-          position: absolute;
-          //display: none;
-          opacity: 0.2;
-          right: 5px;
-          top: 11px;
-          -webkit-transition: all 0.3s ease-out;
-          padding: 2px;
-          &:hover {
-            background: #eee;
-            border-radius: 100%;
-            //-webkit-transform: rotate(180deg);
-          }
-        }
-      }
-    }
-  }
-  .header-menu {
-    background: #1d2f40;
-    .ant-menu-item {
-      width: 100px;
-      height: 64px;
-      padding: 0;
-      text-align: center;
-      line-height: 26px;
-      font-size: 10px;
-      i {
-        font-size: 20px;
-        margin: 0 auto;
-      }
-      span {
-        margin-top: 8px;
-        display: inline-block;
-      }
-      &:hover {
-        background: #14202b;
-      }
-      &:first-child {
-        border-left: rgba(255, 255, 255, 0.65);
-      }
-    }
-  }
-  .ant-menu-inline-collapsed {
-    width: auto;
-    margin-left: -10px;
-  }
-  .ant-layout-footer {
-    padding: 0;
-    color: rgba(0, 0, 0, 0.4);
-    font-size: 12px;
-    line-height: 22px;
-    text-align: center;
-  }
-  .header-user {
-    text-align: right;
-    font-size: 16px;
-    a {
-      display: inline-block;
-
-      margin: 0 8px;
-      color: rgba(255, 255, 255, 0.6);
-      &:hover {
-        color: rgba(255, 255, 255, 1);
-      }
-    }
-    i {
-      -webkit-transition: all 0.1s ease-out;
-      font-size: 16px;
-      &.weak {
-        color: #f1a9a9;
-      }
-      &:hover {
-        font-size: 18px;
-      }
-    }
-  }
-}
+@import url("./assets/layout.less");
 </style>

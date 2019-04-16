@@ -57,7 +57,19 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+      inject: true,
+      chunks: ['vendor','manifest','app'],
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'login.html',
+      template: 'login.html',
+      inject: true,
+      chunks: ['vendor','manifest','login'],
+    }),
+    new HtmlWebpackPlugin({
+      filename: '404.html',
+      template: '404.html',
+      chunks: [],
     }),
     // copy custom static assets
     new CopyWebpackPlugin([
@@ -65,7 +77,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         from: path.resolve(__dirname, '../static'),
         to: config.dev.assetsSubDirectory,
         ignore: ['.*']
-      }
+      },
     ])
   ]
 })
