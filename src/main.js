@@ -6,7 +6,7 @@ import App from './App';
 import store from './store'
 import router from './router';
 import base from "./base.js";
-//import Axios from './AxiosRequest';
+import Axios from './AxiosRequest';
 
 import {
   Icon,
@@ -14,7 +14,7 @@ import {
   message
 } from "ant-design-vue";
 Vue.config.productionTip = false;
-
+Vue.prototype.Axios = Axios;
 Vue.use(Vuex)
 Vue.component(Icon.name, Icon);
 Vue.component(Button.name, Button);

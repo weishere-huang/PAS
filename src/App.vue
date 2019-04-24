@@ -75,6 +75,7 @@
               v-for="(item,index) in tabsList"
               v-bind:class="{ active: item.active}"
               @click="switchTab(item.key)"
+              :key="index"
             >
               <span>{{item.title}}</span>
               <a-icon @click.stop="closeTab(item.key)" type="close"/>
