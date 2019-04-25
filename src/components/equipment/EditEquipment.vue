@@ -1,0 +1,210 @@
+<template>
+	<div class="edit_equipment">
+		<a-row style="line-height:50px;">
+			<a-button @click="$router.back(-1)" icon="left">返回</a-button>
+			<!-- <a-button type="primary" icon="plus-circle">保存</a-button> -->
+		</a-row>
+		<a-row>
+			<div class="content_case">
+				<a-form :form="form">
+					<h4>基础信息</h4>
+					<a-divider/>
+					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 8 }" label="设备编号">
+						<a-input></a-input>
+					</a-form-item>
+					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="设备名称">
+						<a-input></a-input>
+					</a-form-item>
+					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="所属部门">
+						<a-tree-select
+							:dropdownStyle="{ maxHeight: '400px', overflow: 'auto' }"
+							:treeData="treeData"
+							placeholder="请选择"
+							treeDefaultExpandAll
+						>
+							<span slot="title" slot-scope="{key, value}">{{value}}</span>
+						</a-tree-select>
+					</a-form-item>
+					<a-row>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="设备分类">
+								<a-select showSearch placeholder="请选择" optionFilterProp="children">
+									<a-select-option v-for="(item, index) in 10" :key="index" :value="item">{{item}}</a-select-option>
+								</a-select>
+							</a-form-item>
+						</a-col>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="设备类别">
+								<a-select showSearch placeholder="请选择" optionFilterProp="children">
+									<a-select-option v-for="(item, index) in 10" :key="index" :value="item">{{item}}</a-select-option>
+								</a-select>
+							</a-form-item>
+						</a-col>
+					</a-row>
+					<a-row>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="设备型号">
+								<a-input></a-input>
+							</a-form-item>
+						</a-col>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="设备状况">
+								<a-select showSearch placeholder="请选择" optionFilterProp="children">
+									<a-select-option v-for="(item, index) in 10" :key="index" :value="item">{{item}}</a-select-option>
+								</a-select>
+							</a-form-item>
+						</a-col>
+					</a-row>
+					<a-row>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="设备规格">
+								<a-input></a-input>
+							</a-form-item>
+						</a-col>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="出厂日期">
+								<a-date-picker style="width:100%"/>
+							</a-form-item>
+						</a-col>
+					</a-row>
+					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="设备厂家">
+						<a-input></a-input>
+					</a-form-item>
+					<h4>人员信息</h4>
+					<a-divider/>
+					<a-row>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="负责人员">
+								<a-input></a-input>
+							</a-form-item>
+						</a-col>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="维修人员">
+								<a-input></a-input>
+							</a-form-item>
+						</a-col>
+					</a-row>
+					<a-row>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="检修人员">
+								<a-input></a-input>
+							</a-form-item>
+						</a-col>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="保养人员">
+								<a-input></a-input>
+							</a-form-item>
+						</a-col>
+					</a-row>
+					<a-row>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="操作人员">
+								<a-input></a-input>
+							</a-form-item>
+						</a-col>
+						<a-col :span="12">
+							<a-form-item :wrapper-col="{ span: 16,offset: 8 }">
+								<a-button type="primary">添加人员</a-button>
+							</a-form-item>
+						</a-col>
+					</a-row>
+					<h4>其他信息</h4>
+					<a-divider/>
+					<a-row>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="安装位置">
+								<a-input></a-input>
+							</a-form-item>
+						</a-col>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="设备位号">
+								<a-input></a-input>
+							</a-form-item>
+						</a-col>
+					</a-row>
+					<a-row>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="购买价格">
+								<a-input></a-input>
+							</a-form-item>
+						</a-col>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="购买日期">
+								<a-date-picker style="width:100%"/>
+							</a-form-item>
+						</a-col>
+					</a-row>
+					<a-row>
+						<a-col :span="12">
+							<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="入厂日期">
+								<a-date-picker style="width:100%"/>
+							</a-form-item>
+						</a-col>
+					</a-row>
+					<a-col :span="24">
+						<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="相关资料"></a-form-item>
+					</a-col>
+					<a-form-item :wrapper-col="{ span: 20,offset: 4 }">
+						<a-button type="primary">提交</a-button>
+					</a-form-item>
+				</a-form>
+			</div>
+		</a-row>
+	</div>
+</template>
+<script>
+const treeData = [
+	{
+		title: "Node1",
+		value: "0-0",
+		key: "0-0",
+		children: [
+			{
+				value: "0-0-1",
+				key: "0-0-1",
+				scopedSlots: {
+					// custom title
+					title: "title"
+				}
+			},
+			{
+				title: "Child Node2",
+				value: "0-0-2",
+				key: "0-0-2"
+			}
+		]
+	},
+	{
+		title: "Node2",
+		value: "0-1",
+		key: "0-1"
+	}
+];
+export default {
+	data() {
+		return {
+			form: this.$form.createForm(this),
+			treeData
+		};
+	}
+};
+</script>
+
+<style lang="less">
+@border: 1px solid #dde2eb;
+.edit_equipment {
+	.content_case {
+		padding: 12px 0;
+		width: 600px;
+		h4 {
+			padding: 0 14px;
+		}
+		.ant-divider-horizontal {
+			margin: 4px 0;
+		}
+		.ant-form-item {
+			margin-bottom: 16px;
+		}
+	}
+}
+</style>

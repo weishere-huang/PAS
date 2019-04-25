@@ -1,0 +1,131 @@
+#components-layout {
+  height: 100%;
+}
+#components-layout .header {
+  background: #1d2f40;
+}
+#components-layout .logo {
+  width: 120px;
+  margin: 10px 28px auto 0;
+  float: left;
+  line-height: 20px;
+  color: #cfcfcf;
+  text-align: center;
+}
+#components-layout .logo p {
+  margin: 0;
+  border-bottom: solid 1px #cfcfcf;
+}
+#components-layout .main-tabs {
+  height: 48px;
+}
+#components-layout .main-tabs ul {
+  float: left;
+  padding: 0;
+  list-style: none;
+}
+#components-layout .main-tabs ul li {
+  -webkit-transition: all 0.1s ease-out;
+  position: relative;
+  float: left;
+  min-width: 120px;
+  padding: 0 30px;
+  height: 40px;
+  margin: 5px 5px auto 0;
+  text-align: center;
+  line-height: 40px;
+  cursor: default;
+  color: #999;
+}
+#components-layout .main-tabs ul li:hover {
+  background: #fff;
+  color: #333;
+}
+#components-layout .main-tabs ul li:hover i {
+  opacity: 1;
+}
+#components-layout .main-tabs ul li.active {
+  height: 43px;
+  background: #fff;
+  border-bottom: 0;
+  color: #333;
+}
+#components-layout .main-tabs ul li.active:hover {
+  background: #fff;
+}
+#components-layout .main-tabs ul li i {
+  position: absolute;
+  opacity: 0.2;
+  right: 5px;
+  top: 11px;
+  -webkit-transition: all 0.3s ease-out;
+  padding: 2px;
+}
+#components-layout .main-tabs ul li i:hover {
+  background: #eee;
+  border-radius: 100%;
+}
+#components-layout .header-menu {
+  background: #1d2f40;
+}
+#components-layout .header-menu .ant-menu-item {
+  width: 100px;
+  height: 64px;
+  padding: 0;
+  text-align: center;
+  line-height: 26px;
+  font-size: 10px;
+}
+#components-layout .header-menu .ant-menu-item i {
+  font-size: 20px;
+  margin: 0 auto;
+}
+#components-layout .header-menu .ant-menu-item span {
+  margin-top: 8px;
+  display: inline-block;
+}
+#components-layout .header-menu .ant-menu-item:hover {
+  background: #14202b;
+}
+#components-layout .header-menu .ant-menu-item:first-child {
+  border-left: rgba(255, 255, 255, 0.65);
+}
+#components-layout .ant-menu-inline-collapsed {
+  width: auto;
+  margin-left: -10px;
+}
+#components-layout .ant-layout-footer {
+  padding: 0;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 12px;
+  line-height: 22px;
+  text-align: center;
+}
+#components-layout .header-user {
+  text-align: right;
+  font-size: 16px;
+}
+#components-layout .header-user a {
+  display: inline-block;
+  margin: 0 8px;
+  color: rgba(255, 255, 255, 0.6);
+}
+#components-layout .header-user a:hover {
+  color: #ffffff;
+}
+#components-layout .header-user i {
+  -webkit-transition: all 0.1s ease-out;
+  font-size: 16px;
+}
+#components-layout .header-user i.weak {
+  color: #f1a9a9;
+}
+#components-layout .header-user i:hover {
+  font-size: 18px;
+}
+.hide {
+  display: none !important;
+}
+.ant-form-item {
+  margin-bottom: 16px;
+}
