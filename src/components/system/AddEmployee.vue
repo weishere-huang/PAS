@@ -97,7 +97,7 @@ export default {
 					uid: "-1",
 					name: "xxx.png",
 					status: "done",
-					url: "http://www.baidu.com/xxx.png"
+					url: "http://www.baidu.com"
 				}
 			]
 		};

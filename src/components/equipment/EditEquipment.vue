@@ -74,7 +74,18 @@
 					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="保修截止日期">
 						<a-date-picker style="width:100%"/>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="相关资料"></a-form-item>
+					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="相关资料">
+						<a-upload
+							action="//jsonplaceholder.typicode.com/posts/"
+							:multiple="true"
+							:fileList="fileList"
+							@change="handleChange"
+						>
+							<a-button>
+								<a-icon type="upload"/>Upload
+							</a-button>
+						</a-upload>
+					</a-form-item>
 					<a-form-item :wrapper-col="{ span: 20,offset: 4 }">
 						<a-button type="primary">提交</a-button>
 					</a-form-item>
@@ -161,7 +172,15 @@ export default {
 			form: this.$form.createForm(this),
 			treeData,
 			deviceClassigy,
-			deviceState
+			deviceState,
+			fileList: [
+				{
+					uid: "-1",
+					name: "xxx.png",
+					status: "done",
+					url: "http://www.baidu.com"
+				}
+			]
 		};
 	},
 	methods: {

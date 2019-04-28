@@ -11,6 +11,7 @@ import Organization from '@/components/organization/index'
 import Employee from '@/components/system/employee'
 import AddEmployee from '@/components/system/AddEmployee'
 import EditEmployee from '@/components/system/EditEmployee'
+import Admin from '@/components/system/admin/Admin'
 Vue.use(Router)
 
 export default new Router({
@@ -71,6 +72,11 @@ export default new Router({
           component: EditEmployee
         }
       ]
+    },
+    {
+      path: '/Admin',
+      name: 'Admin',
+      component: Admin
     },
   ]
 })

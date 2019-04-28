@@ -160,21 +160,22 @@ export default [{
     ]
   },
   {
-    menu: '组织结构',
-    permissionCode: 'organization',
-    icon: '&#xe915;',
-    subMenu: [{
-      menu: '组织机构',
-      route: '/Organization',
-      key: 'organization',
-      permissionCode: 'organization'
-    }]
-  },
-  {
     menu: '系统配置',
     permissionCode: 'system',
     icon: '&#xe915;',
     subMenu: [{
+        menu: '组织构架',
+        route: '/Organization',
+        key: 'organization',
+        permissionCode: 'organization'
+      },
+      {
+        menu: '管理员',
+        route: '/Admin',
+        key: 'Admin',
+        permissionCode: 'Admin'
+      },
+      {
         menu: '员工',
         route: '/Employee',
         key: 'employee',

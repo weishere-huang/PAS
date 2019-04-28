@@ -35,7 +35,7 @@
 						</a-tree-select>
 					</a-form-item>
 					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="只能/工种">
-						<a-select showSearch placeholder="请选择" optionFilterProp="children">
+						<a-select placeholder="请选择" optionFilterProp="children">
 							<a-select-option v-for="(item, index) in 10" :key="index" :value="item">{{item}}</a-select-option>
 						</a-select>
 					</a-form-item>

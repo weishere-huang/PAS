@@ -143,7 +143,7 @@ export default {
 	data() {
 		return {
 			zh_CN,
-			collapsed: true,
+			collapsed: false,
 			menuSource: [],
 			isShow: true,
 			cachedViews: [],
