@@ -85,7 +85,7 @@
 					<a-input></a-input>
 				</a-form-item>
 				<a-form-item :label-col=" { span: 8 }" :wrapper-col="{ span: 16 }" label="设备状况">
-					<a-checkbox-group v-model="value" @change="onChange" style="line-height:38px">
+					<a-checkbox-group @change="onChange" style="line-height:38px">
 						<a-row>
 							<a-col :span="12">
 								<a-checkbox value="1">在用</a-checkbox>
@@ -120,7 +120,7 @@
 				}"
 			>
 				<a-button :style="{marginRight: '8px'}" @click="visible=false">取消</a-button>
-				<a-button @click="onClose" type="primary">搜索</a-button>
+				<a-button @click="visible=false" type="primary">搜索</a-button>
 			</div>
 		</a-drawer>
 	</div>
@@ -232,6 +232,7 @@ const data = [
 export default {
 	data() {
 		return {
+			form: this.$form.createForm(this),
 			visible: false,
 			isHideList: this.$route.params.id !== undefined ? true : false,
 			allClassify: [
