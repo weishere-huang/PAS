@@ -164,6 +164,18 @@ export default [{
     permissionCode: 'system',
     icon: '&#xe915;',
     subMenu: [{
+        menu: '委外加工',
+        route: '/Subcontract',
+        key: 'Subcontract',
+        permissionCode: 'Subcontract'
+      },
+      {
+        menu: '工序类型',
+        route: '/ProcessTypes',
+        key: 'ProcessTypes',
+        permissionCode: 'ProcessTypes'
+      },
+      {
         menu: '组织构架',
         route: '/Organization',
         key: 'organization',
@@ -191,6 +203,24 @@ export default [{
       {
         menu: '员工修改',
         routeReg: /^\/Employee\/EditEmployee\/\d{1,}$/i,
+        key: 'editEmployee',
+        visible: true,
+        permissionCode: 'editEmployee'
+      },
+      {
+        menu: '角色权限',
+        route: '/Authority',
+        key: 'authority',
+        permissionCode: 'authority'
+      }, {
+        menu: '权限添加',
+        route: '/Authority/AddAuthority',
+        key: 'addEmployee',
+        visible: true,
+        permissionCode: 'addEmployee'
+      }, {
+        menu: '权限修改',
+        routeReg: /^\/Authority\/EditAuthority\/\d{1,}$/i,
         key: 'editEmployee',
         visible: true,
         permissionCode: 'editEmployee'

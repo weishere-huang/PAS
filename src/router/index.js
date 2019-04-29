@@ -12,6 +12,11 @@ import Employee from '@/components/system/employee'
 import AddEmployee from '@/components/system/AddEmployee'
 import EditEmployee from '@/components/system/EditEmployee'
 import Admin from '@/components/system/admin/Admin'
+import Authority from '@/components/system/authority/Authority'
+import AddAuthority from '@/components/system/authority/AddAuthority'
+import EditAuthority from '@/components/system/authority/EditAuthority'
+import ProcessTypes from '@/components/system/processtypes/ProcessTypes'
+import Subcontract from '@/components/system/subcontract/Subcontract'
 Vue.use(Router)
 
 export default new Router({
@@ -77,6 +82,32 @@ export default new Router({
       path: '/Admin',
       name: 'Admin',
       component: Admin
+    },
+    {
+      path: '/Authority',
+      name: 'Authority',
+      component: Authority,
+      children: [{
+          path: 'AddAuthority',
+          name: 'AddAuthority',
+          component: AddAuthority
+        },
+        {
+          path: 'EditAuthority/:id/',
+          name: 'EditAuthority',
+          component: EditAuthority
+        }
+      ]
+    },
+    {
+      path: '/ProcessTypes',
+      name: 'ProcessTypes',
+      component: ProcessTypes
+    },
+    {
+      path: '/Subcontract',
+      name: 'Subcontract',
+      component: Subcontract
     },
   ]
 })

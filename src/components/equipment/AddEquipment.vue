@@ -50,7 +50,7 @@
 						</a-select>
 					</a-form-item>
 					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="负责人">
-						<a-select mode="multiple" style="width: 100%" @change="handleChange" placeholder="请选择">
+						<a-select mode="multiple" style="width: 100%"  placeholder="请选择">
 							<a-select-option v-for="i in 25" :key="(i + 9).toString(36) + i">{{(i + 9).toString(36) + i}}</a-select-option>
 						</a-select>
 					</a-form-item>

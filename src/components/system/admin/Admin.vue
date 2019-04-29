@@ -91,7 +91,7 @@
 					</template>
 				</a-table>
 				<a-pagination
-					style="padding-top:12px;"
+					style="padding-top:12px;text-align: right;"
 					showQuickJumper
 					:defaultCurrent="current"
 					:total="total"
@@ -143,7 +143,7 @@ const columns = [
 		dataIndex: "operation",
 		key: "operation",
 		title: "操作",
-		width: 80,
+		width: 100,
 		scopedSlots: { customRender: "operation" }
 	}
 ];

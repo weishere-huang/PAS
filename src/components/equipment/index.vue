@@ -50,7 +50,7 @@
 							</template>
 						</a-table>
 						<a-pagination
-							style="padding-top:12px;"
+							style="padding-top:12px;text-align: right;"
 							showQuickJumper
 							:defaultCurrent="current"
 							:total="total"
@@ -130,7 +130,7 @@ const columns = [
 	{
 		dataIndex: "deviceNo",
 		title: "设备编号",
-		width: 90,
+		width: 100,
 		key: "deviceNo"
 	},
 	{
@@ -150,19 +150,19 @@ const columns = [
 		dataIndex: "organizeName",
 		key: "organizeName",
 		title: "所属部门",
-		width: 140
+		width: 160
 	},
 	{
 		dataIndex: "location",
 		key: "location",
 		title: "安装位置",
-		width: 70
+		width: 80
 	},
 	{
 		dataIndex: "locationNo",
 		key: "locationNo",
 		title: "设备位号",
-		width: 70
+		width: 80
 	},
 	{
 		dataIndex: "deviceCategoryName",
@@ -174,7 +174,7 @@ const columns = [
 		dataIndex: "deviceModel",
 		key: "deviceModel",
 		title: "设备型号",
-		width: 70
+		width: 100
 	},
 	{
 		dataIndex: "workerNames",
@@ -186,7 +186,7 @@ const columns = [
 		dataIndex: "operation",
 		key: "operation",
 		title: "操作",
-		width: 70,
+		width: 100,
 		scopedSlots: { customRender: "operation" }
 	}
 ];
@@ -260,27 +260,6 @@ export default {
 		},
 		edit(record, text, index) {
 			this.$router.push({ path: "/MyDevice/EditEquipment/" + record.key });
-		},
-		save(key) {
-			const newData = [...this.data];
-			const target = newData.filter(item => key === item.key)[0];
-			if (target) {
-				delete target.editable;
-				this.data = newData;
-				this.cacheData = newData.map(item => ({ ...item }));
-			}
-		},
-		cancel(key) {
-			const newData = [...this.data];
-			const target = newData.filter(item => key === item.key)[0];
-			if (target) {
-				Object.assign(
-					target,
-					this.cacheData.filter(item => key === item.key)[0]
-				);
-				delete target.editable;
-				this.data = newData;
-			}
 		}
 	},
 	created() {

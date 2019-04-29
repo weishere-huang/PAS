@@ -39,7 +39,7 @@
 						</template>
 					</a-table>
 					<a-pagination
-						style="padding-top:12px;"
+						style="padding-top:12px;text-align: right;"
 						showQuickJumper
 						:defaultCurrent="current"
 						:total="total"
@@ -59,7 +59,7 @@ const columns = [
 	{
 		dataIndex: "deviceNo",
 		title: "员工编号",
-		width: 90,
+		width: 120,
 		key: "deviceNo"
 	},
 	{
@@ -98,7 +98,7 @@ const columns = [
 		dataIndex: "operation",
 		key: "operation",
 		title: "操作",
-		width: 70,
+		width: 100,
 		scopedSlots: { customRender: "operation" }
 	}
 ];
@@ -171,27 +171,6 @@ export default {
 		},
 		edit(record, text, index) {
 			this.$router.push({ path: "/Employee/EditEmployee/" + record.key });
-		},
-		save(key) {
-			const newData = [...this.data];
-			const target = newData.filter(item => key === item.key)[0];
-			if (target) {
-				delete target.editable;
-				this.data = newData;
-				this.cacheData = newData.map(item => ({ ...item }));
-			}
-		},
-		cancel(key) {
-			const newData = [...this.data];
-			const target = newData.filter(item => key === item.key)[0];
-			if (target) {
-				Object.assign(
-					target,
-					this.cacheData.filter(item => key === item.key)[0]
-				);
-				delete target.editable;
-				this.data = newData;
-			}
 		}
 	},
 	created() {
