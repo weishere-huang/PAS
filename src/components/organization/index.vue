@@ -10,19 +10,19 @@
 							<template slot="content">
 								<span>添加同级</span>
 							</template>
-							<a-icon class="icon_style" type="plus"/>
+							<a-icon class="icon_style" type="plus" @click="modalEquativeVisible=true"/>
 						</a-popover>&nbsp;&nbsp;
 						<a-popover placement="top">
 							<template slot="content">
 								<span>添加子级</span>
 							</template>
-							<a-icon class="icon_style" type="plus-circle"/>
+							<a-icon class="icon_style" type="plus-circle" @click="modalSublevelVisible=true"/>
 						</a-popover>&nbsp;&nbsp;
 						<a-popover placement="top">
 							<template slot="content">
 								<span>修改</span>
 							</template>
-							<a-icon class="icon_style" type="edit"/>
+							<a-icon class="icon_style" type="edit" @click="modalEditVisible=true"/>
 						</a-popover>&nbsp;&nbsp;
 						<a-popover placement="top">
 							<template slot="content">
@@ -34,6 +34,48 @@
 				</span>
 			</template>
 		</a-tree>
+		<a-modal
+			title="新增同级"
+			:maskClosable="false"
+			centered
+			v-model="modalEquativeVisible"
+			@ok="() => modalEquativeVisible = false"
+			@cancel="form.resetFields()"
+		>
+			<a-form :form="form">
+				<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="分类名称">
+					<a-input v-decorator="['processName',{rules: [{ required: true, message: '请填写分类名称' }]}]"></a-input>
+				</a-form-item>
+			</a-form>
+		</a-modal>
+		<a-modal
+			title="新增子级"
+			:maskClosable="false"
+			centered
+			v-model="modalSublevelVisible"
+			@ok="() => modalSublevelVisible = false"
+			@cancel="form.resetFields()"
+		>
+			<a-form :form="form">
+				<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="分类名称">
+					<a-input v-decorator="['processName',{rules: [{ required: true, message: '请填写分类名称' }]}]"></a-input>
+				</a-form-item>
+			</a-form>
+		</a-modal>
+		<a-modal
+			title="修改"
+			:maskClosable="false"
+			centered
+			v-model="modalEditVisible"
+			@ok="() => modalEditVisible = false"
+			@cancel="form.resetFields()"
+		>
+			<a-form :form="form">
+				<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="分类名称">
+					<a-input v-decorator="['processName',{rules: [{ required: true, message: '请填写分类名称' }]}]"></a-input>
+				</a-form-item>
+			</a-form>
+		</a-modal>
 	</div>
 </template>
 <script>
@@ -64,6 +106,10 @@ const treeData = [
 export default {
 	data() {
 		return {
+			form: this.$form.createForm(this),
+			modalEquativeVisible: false,
+			modalSublevelVisible: false,
+			modalEditVisible: false,
 			treeData
 		};
 	}
