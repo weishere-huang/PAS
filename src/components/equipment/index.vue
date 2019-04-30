@@ -3,7 +3,7 @@
 		<router-view></router-view>
 		<div :class="[{hide:isHideList}]">
 			<a-row>
-				<a-col :span="4">
+				<!-- <a-col :span="4">
 					<div class="left_nav">
 						<div>
 							<a-list :dataSource="allClassify" size="small">
@@ -20,8 +20,8 @@
 							</a-list>
 						</div>
 					</div>
-				</a-col>
-				<a-col :span="20" style="padding:0 20px;">
+				</a-col>-->
+				<a-col :span="24" style="padding:0 20px;">
 					<a-row>
 						<div style="line-height:50px;">
 							<a-col :span="8">
@@ -41,10 +41,27 @@
 						<a-table :columns="columns" :pagination="false" :dataSource="data">
 							<template slot="operation" slot-scope="text, record, index">
 								<div class="editable-row-operations">
-									<span>
-										<a @click="() => edit(record,text,index)">修改</a>
-										&nbsp;
-										<a @click="() => edit(record,text,index)">删除</a>
+									<span class="handle_style">
+										<a-popover placement="top">
+											<template slot="content">
+												<span>修改</span>
+											</template>
+											<a-icon type="edit" @click="() => edit(record,text,index)" style="cursor:pointer;"/>
+										</a-popover>&nbsp;&nbsp;
+										<a-popconfirm
+											title="确定删除吗？"
+											@confirm="confirm"
+											@cancel="cancel"
+											okText="确定"
+											cancelText="取消"
+										>
+											<a-popover placement="top">
+												<template slot="content">
+													<span>删除</span>
+												</template>
+												<a-icon type="delete"/>
+											</a-popover>
+										</a-popconfirm>
 									</span>
 								</div>
 							</template>
@@ -186,7 +203,7 @@ const columns = [
 		dataIndex: "operation",
 		key: "operation",
 		title: "操作",
-		width: 100,
+		width: 80,
 		scopedSlots: { customRender: "operation" }
 	}
 ];
@@ -250,6 +267,14 @@ export default {
 		};
 	},
 	methods: {
+		confirm(e) {
+			console.log(e);
+			this.$message.success("Click on Yes");
+		},
+		cancel(e) {
+			console.log(e);
+			this.$message.error("Click on No");
+		},
 		onShowSizeChange(current, pageSize) {
 			this.pageSize = pageSize;
 		},

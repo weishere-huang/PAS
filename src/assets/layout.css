@@ -129,3 +129,10 @@
 .ant-form-item {
   margin-bottom: 16px;
 }
+.handle_style .anticon {
+  cursor: pointer;
+  color: #1890ff;
+}
+.handle_style .anticon:hover {
+  color: #40a9ff;
+}

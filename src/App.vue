@@ -289,6 +289,6 @@ export default {
 	overflow: scroll;
 }
 body {
-	min-width: 1024px;
+	min-width: 1200px;
 }
 </style>
