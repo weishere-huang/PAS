@@ -7,6 +7,7 @@ import store from './store'
 import router from './router';
 import base from "./base.js";
 import Axios from './AxiosRequest';
+import global from './components/global/Global'
 import {
   Affix,
   Anchor,
@@ -69,6 +70,7 @@ import {
 } from 'ant-design-vue';
 Vue.config.productionTip = false;
 Vue.prototype.Axios = Axios;
+Vue.prototype.global = global;
 Vue.use(Vuex)
 Vue.prototype.$message = message;
 Vue.prototype.$notification = notification;
@@ -133,6 +135,9 @@ Vue.use(Upload);
 Vue.use(Skeleton);
 Vue.use(Comment);
 Vue.use(ConfigProvider);
+
+
+
 
 /* eslint-disable no-new */
 new Vue({

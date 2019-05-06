@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 axios.defaults.withCredentials = true;
+import global from './components/global/Global';
 
 export default ({ url, type, params, config, option, loadingConfig }, vue) => {
     //process.env.NODE_ENV === 'development' && url = `/api${url}`;
@@ -33,8 +34,8 @@ export default ({ url, type, params, config, option, loadingConfig }, vue) => {
         //const loading = loadInit();
         loadingConfig.begin();
         const runAsync = url.map((_url, index) => {
-            //api的url加入统一前缀
-            _url = `${apiSrc}/${option.requestTarget}${_url}`;
+            //api的url加入统一前缀  /${option.requestTarget}
+            _url = `${global.apiSrc}${_url}`;
             const _params = Object.prototype.toString.call(params) !== '[object Array]' ? params || {} : params[index];
             const _type = Object.prototype.toString.call(type) !== '[object Array]' ? type || "post" : type[index];
             return new Promise(function (resolve, reject) {
@@ -68,7 +69,7 @@ export default ({ url, type, params, config, option, loadingConfig }, vue) => {
             }, 10);
         });
     } else {
-        url = `${apiSrc}/${option.requestTarget}${url}`;
+        url = `${global.apiSrc}${url}`;
         params = params || {};
         return new Promise((resolve, reject = () => { }) => {
             //这里加一个通用的数据重置后门
