@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Dashboard from '@/components/Dashboard'
 import OrderList from '@/components/order/OrderList'
 import OrderAdd from '@/components/order/OrderAdd'
+import OrderEdit from '@/components/order/OrderEdit'
 import MyDevice from '@/components/equipment/index'
 import DeviceCategory from '@/components/equipment/DeviceCategory'
 import AddEquipment from '@/components/equipment/AddEquipment'
@@ -29,13 +30,20 @@ export default new Router({
     {
       path: '/OrderList',
       name: 'OrderList',
-      component: OrderList
+      component: OrderList,
+      children: [{
+          path: 'OrderAdd',
+          name: 'OrderAdd',
+          component: OrderAdd
+        },
+        {
+          path: 'OrderEdit/:id/',
+          name: 'OrderEdit',
+          component: OrderEdit
+        },
+      ]
     },
-    {
-      path: '/OrderAdd',
-      name: 'OrderAdd',
-      component: OrderAdd
-    },
+
     {
       path: '/MyDevice',
       name: 'MyDevice',

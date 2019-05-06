@@ -1,5 +1,5 @@
 <template>
-	<div class="add_order">
+	<div class="edit_order">
 		<a-row style="line-height:50px;">
 			<a-button @click="$router.back(-1)" icon="left">返回</a-button>
 			<!-- <a-button type="primary" icon="plus-circle">保存</a-button> -->
@@ -357,7 +357,7 @@ export default {
 };
 </script>
 <style lang="less">
-.add_order {
+.edit_order {
 	.content_case {
 		padding: 12px 0;
 		width: 80%;
@@ -385,3 +385,4 @@ export default {
 	}
 }
 </style>
+

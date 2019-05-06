@@ -26,9 +26,17 @@ export default [{
     icon: '&#xe602;',
     subMenu: [{
         menu: '订单新建',
-        route: '/OrderAdd',
+        route: '/OrderList/OrderAdd',
         key: 'orderAdd',
+        visible: true,
         permissionCode: 'orderAdd'
+      },
+      {
+        menu: '修改订单',
+        routeReg: /^\/OrderList\/OrderEdit\/\d{1,}$/i,
+        key: 'orderEdit',
+        visible: true,
+        permissionCode: 'orderEdit'
       },
       {
         menu: '订单管理',

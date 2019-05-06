@@ -6,13 +6,13 @@
 		<a-row>
 			<div class="content_case">
 				<a-form :form="form">
-					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="角色名称">
+					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="角色名称">
 						<a-input></a-input>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="备注">
+					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="备注">
 						<a-textarea placeholder :autosize="{ minRows: 4, maxRows: 4 }"/>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="角色名称">
+					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="角色名称">
 						<a-tree
 							checkable
 							@expand="onExpand"
@@ -23,7 +23,7 @@
 							:treeData="treeData"
 						/>
 					</a-form-item>
-					<a-form-item :wrapper-col="{ span: 20,offset: 4 }">
+					<a-form-item :wrapper-col="{ span: 22,offset: 2 }">
 						<a-button type="primary">提交</a-button>
 					</a-form-item>
 				</a-form>
@@ -103,7 +103,7 @@ export default {
 .edit_authority {
 	.content_case {
 		padding: 12px 0;
-		width: 800px;
+		width: 80%;
 		margin-left: 5%;
 		.ant-divider-horizontal {
 			margin: 4px 0;

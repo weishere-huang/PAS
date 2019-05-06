@@ -6,25 +6,25 @@
 		<a-row>
 			<div class="content_case">
 				<a-form :form="form">
-					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="员工编号">
+					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="员工编号">
 						<a-input></a-input>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="姓名">
+					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="姓名">
 						<a-input></a-input>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="年龄">
+					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="年龄">
 						<a-input addonAfter="岁"></a-input>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="性别">
+					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="性别">
 						<a-input></a-input>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="入职时间">
+					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="入职时间">
 						<a-date-picker style="width:100%"/>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="以往工作年限好的">
+					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="以往工作年限">
 						<a-input addonAfter="年"></a-input>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="所处班组">
+					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="所处班组">
 						<a-tree-select
 							:dropdownStyle="{ maxHeight: '400px', overflow: 'auto' }"
 							:treeData="treeData"
@@ -34,12 +34,12 @@
 							<span slot="title" slot-scope="{key, value}">{{value}}</span>
 						</a-tree-select>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="只能/工种">
+					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="只能/工种">
 						<a-select placeholder="请选择" optionFilterProp="children">
 							<a-select-option v-for="(item, index) in 10" :key="index" :value="item">{{item}}</a-select-option>
 						</a-select>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 4 }" :wrapper-col="{ span: 20 }" label="简历附件">
+					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="简历附件">
 						<a-upload
 							action="//jsonplaceholder.typicode.com/posts/"
 							:multiple="true"
@@ -51,7 +51,7 @@
 							</a-button>
 						</a-upload>
 					</a-form-item>
-					<a-form-item :wrapper-col="{ span: 20,offset: 4 }">
+					<a-form-item :wrapper-col="{ span: 22,offset: 2 }">
 						<a-button type="primary">提交</a-button>
 					</a-form-item>
 				</a-form>
@@ -137,7 +137,7 @@ export default {
 .edit_employee {
 	.content_case {
 		padding: 12px 0;
-		width: 800px;
+		width: 80%;
 		margin-left: 5%;
 		h4 {
 			padding: 0 14px;

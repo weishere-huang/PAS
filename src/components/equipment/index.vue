@@ -26,11 +26,11 @@
 						<div style="line-height:50px;">
 							<a-col :span="8">
 								<a-button type="primary" @click="$router.push({path:'/MyDevice/AddEquipment'})">
-									<a-icon type="plus-circle"/>添加
+									<a-icon type="plus-circle"/>新增
 								</a-button>
 							</a-col>
-
-							<a-col :span="16" style="text-align:right">关键字：
+							<a-col :span="16" style="text-align:right">
+								关键字：
 								<a-input type="text" style="width:300px" placeholder="根据设备编号，名称，位号"></a-input>
 								<a-button type="primary" icon="search">搜索</a-button>
 								<a-button @click="visible=true">高级搜索</a-button>
