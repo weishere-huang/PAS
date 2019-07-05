@@ -34,13 +34,12 @@
 								</a-badge>
 							</a-tooltip>
 						</router-link>
-
-						<router-link to="user/logout">
+						<router-link to>
 							<a-tooltip placement="bottom">
 								<template slot="title">
 									<span>退出系统</span>
 								</template>
-								<a-icon type="logout"/>
+								<a-icon type="logout" @click="toLogin"/>
 							</a-tooltip>
 						</router-link>
 					</a-col>
@@ -169,6 +168,9 @@ export default {
 		};
 	},
 	methods: {
+		toLogin() {
+			window.location.href = "login.html";
+		},
 		switchTab(key, path) {
 			//先检查tabsList
 			let chooseMenu = this.tabsList.find(item => item.key == key);

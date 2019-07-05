@@ -1,14 +1,12 @@
 body {
   color: #fff;
   background-color: #363636;
-
-  .canvasWrap {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-  }
 }
-
+body .canvasWrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
 #login-layout {
   position: absolute;
   z-index: 10;
@@ -23,17 +21,14 @@ body {
   box-shadow: inset 0 0 4px #fff;
   border: solid 1px #ddd;
   border-radius: 20px;
-
-  .login-wrap {
-    padding: 30px;
-  }
-
-  .ant-card {
-    background: transparent;
-    color: #fff;
-
-    .ant-card-head {
-      color: #fff;
-    }
-  }
+}
+#login-layout .login-wrap {
+  padding: 30px;
+}
+#login-layout .ant-card {
+  background: transparent;
+  color: #fff;
+}
+#login-layout .ant-card .ant-card-head {
+  color: #fff;
 }

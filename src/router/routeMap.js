@@ -2,6 +2,17 @@
 //permissionCode为权限映射码，若permissionCode未对应到用户权限则不显示也无跳转访问权限
 //route和routeReg为匹配路由，二者必须有一个，若都有则为“或”逻辑
 export default [{
+    menu: '企业管理',
+    permissionCode: 'enterprise',
+    icon: '&#xe60a;',
+    subMenu: [{
+      menu: '企业列表',
+      route: '/Enterprise',
+      key: 'enterprise',
+      permissionCode: 'enterprise',
+      defaultDock: true
+    }, ]
+  }, {
     menu: '工作台',
     permissionCode: 'mainDashboard',
     icon: '&#xe60a;',
@@ -21,54 +32,53 @@ export default [{
     ]
   },
   {
-    menu: '任务订单',
+    menu: '生产任务',
     permissionCode: 'order',
     icon: '&#xe602;',
     subMenu: [{
-        menu: '订单新建',
-        route: '/OrderList/OrderAdd',
-        key: 'orderAdd',
-        visible: true,
-        permissionCode: 'orderAdd'
-      },
-      {
-        menu: '修改订单',
-        routeReg: /^\/OrderList\/OrderEdit\/\d{1,}$/i,
-        key: 'orderEdit',
-        visible: true,
-        permissionCode: 'orderEdit'
-      },
-      {
-        menu: '订单管理',
+        menu: '生产订单',
         route: '/OrderList',
         key: 'orderList',
         permissionCode: 'orderList'
-      }
-    ]
-  },
-  {
-    menu: '工作令',
-    permissionCode: 'workOrder',
-    icon: '&#xe63c;',
-    subMenu: [{
-        menu: '工作令管理',
+      },
+      {
+        menu: '生产工作令',
         route: '/WorkOrderList',
         key: 'workOrderList',
         permissionCode: 'workOrderList'
-      }, {
-        menu: '工作令新建',
-        route: '/WorkOrderAdd',
-        key: 'workOrderAdd',
-        permissionCode: 'workOrderAdd'
       },
       {
         menu: '移交单管理',
-        routeReg: /^\/workOrder\/transferOrder\/\d{1,}$/i,
+        routeReg: /^\/WorkOrderList\/transferOrder\/\d{1,}$/i,
         key: 'transferOrder',
+        visible: true,
         permissionCode: 'transferOrder'
       }
     ]
   },
+  // {
+  //   menu: '工作令',
+  //   permissionCode: 'workOrder',
+  //   icon: '&#xe63c;',
+  //   subMenu: [{
+  //       menu: '工作令管理',
+  //       route: '/WorkOrderList',
+  //       key: 'workOrderList',
+  //       permissionCode: 'workOrderList'
+  //     }, {
+  //       menu: '工作令新建',
+  //       route: '/WorkOrderAdd',
+  //       key: 'workOrderAdd',
+  //       permissionCode: 'workOrderAdd'
+  //     },
+  //     {
+  //       menu: '移交单管理',
+  //       routeReg: /^\/workOrder\/transferOrder\/\d{1,}$/i,
+  //       key: 'transferOrder',
+  //       permissionCode: 'transferOrder'
+  //     }
+  //   ]
+  // },
   {
     menu: '生产设备',
     permissionCode: 'device"',
@@ -172,7 +182,7 @@ export default [{
     permissionCode: 'system',
     icon: '&#xe915;',
     subMenu: [{
-        menu: '委外加工',
+        menu: '合作单位',
         route: '/Subcontract',
         key: 'Subcontract',
         permissionCode: 'Subcontract'

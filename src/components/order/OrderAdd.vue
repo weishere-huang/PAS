@@ -1,20 +1,12 @@
 <template>
 	<div class="add_order">
-		<a-row style="line-height:50px;">
-			<a-button @click="$router.back(-1)" icon="left">返回</a-button>
-			<!-- <a-button type="primary" icon="plus-circle">保存</a-button> -->
-		</a-row>
 		<a-row>
 			<div class="content_case">
-				<a-form :form="form">
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="订单号">
-						<a-input></a-input>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="订单标题">
-						<a-input></a-input>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="业务类型">
-						<a-select placeholder="请选择" optionFilterProp="children">
+				<!-- <a-tabs defaultActiveKey="1">
+				<a-tab-pane tab="基础信息" key="1">-->
+				<a-form :form="form" layout="inline">
+					<a-form-item label="订单类型">
+						<a-select placeholder="请选择" style="width:178px;" optionFilterProp="children">
 							<a-select-option
 								v-for="(item, index) in orderClassigy"
 								:key="index"
@@ -22,59 +14,8 @@
 							>{{item.label}}</a-select-option>
 						</a-select>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="客户名称">
-						<a-input></a-input>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="联系人">
-						<a-input></a-input>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="联系电话">
-						<a-input></a-input>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="下单日期">
-						<a-date-picker style="width:100%"/>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="产品内容">
-						<a-table :pagination="false" :columns="columns" :dataSource="data" bordered rowKey="id">
-							<template
-								v-for="col in ['deviceNo', 'deviceName', 'deviceState','organizeName', 'location', 'locationNo','deviceCategoryName', 'workerNames']"
-								:slot="col"
-								slot-scope="text, record, index"
-							>
-								<div :key="col">
-									<a-input
-										style="margin: -5px 0"
-										:value="text"
-										@change="e => handleChangeTable(e.target.value, record.id, col)"
-									/>
-								</div>
-							</template>
-							<template slot="deviceModel" slot-scope="text, record, index">
-								<div>
-									<a-date-picker style="width:100%"/>
-								</div>
-							</template>
-							<template slot="operation" slot-scope="text, record, index">
-								<div class="editable-row-operations">
-									<span class="handle_style">
-										<a-popconfirm title="确定删除吗？" @confirm="onDelete(record.id)" okText="确定" cancelText="取消">
-											<a-popover placement="top">
-												<template slot="content">
-													<span>删除</span>
-												</template>
-												<a-icon type="delete" style="color:red;"/>
-											</a-popover>
-										</a-popconfirm>
-									</span>
-								</div>
-							</template>
-						</a-table>
-						<span @click="handleAdd" style=" cursor: pointer;" class="handle_table">
-							<a-icon type="plus-circle"/>&nbsp;添加一行
-						</span>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="生产状态">
-						<a-select placeholder="请选择" optionFilterProp="children">
+					<a-form-item label="订单来源">
+						<a-select placeholder="请选择" style="width:178px;" optionFilterProp="children">
 							<a-select-option
 								v-for="(item, index) in productionState"
 								:key="index"
@@ -82,8 +23,44 @@
 							>{{item.label}}</a-select-option>
 						</a-select>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="生产风险">
-						<a-select placeholder="请选择" optionFilterProp="children">
+					<a-form-item label="外部订单编号">
+						<a-input style="width:178px;"></a-input>
+					</a-form-item>
+					<a-form-item label="订单标题">
+						<a-input style="width:812px;"></a-input>
+					</a-form-item>
+					<a-form-item label="客户名称">
+						<a-input style="width:812px;"></a-input>
+					</a-form-item>
+					<a-form-item label="计划数量">
+						<a-input style="width:178px;"></a-input>
+					</a-form-item>
+					<a-form-item label="预计开工时间">
+						<a-date-picker style="width:178px;"/>
+					</a-form-item>
+					<a-form-item label="预计完工时间">
+						<a-date-picker style="width:178px;"/>
+					</a-form-item>
+					<a-form-item label="完工数量">
+						<a-input style="width:178px;" disabled></a-input>
+					</a-form-item>
+					<a-form-item label="实际开工时间">
+						<a-date-picker style="width:178px;" disabled/>
+					</a-form-item>
+					<a-form-item label="实际完工时间">
+						<a-date-picker style="width:178px;" disabled/>
+					</a-form-item>
+					<a-form-item label="预估生产成本">
+						<a-input style="width:178px;"></a-input>
+					</a-form-item>
+					<a-form-item label="实际生产成本">
+						<a-input style="width:178px;"></a-input>
+					</a-form-item>
+					<a-form-item label="计划交货时间">
+						<a-date-picker style="width:178px;"/>
+					</a-form-item>
+					<a-form-item label="风险预警">
+						<a-select placeholder="请选择" style="width:178px;" optionFilterProp="children">
 							<a-select-option
 								v-for="(item, index) in productionRisk"
 								:key="index"
@@ -91,16 +68,10 @@
 							>{{item.label}}</a-select-option>
 						</a-select>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="负责人">
-						<a-input></a-input>
+					<a-form-item label="备注">
+						<a-textarea style="width:814px;" :autosize="{ minRows: 4, maxRows: 4 }"></a-textarea>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="订单录入">
-						<span>当前登录人</span>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="备注">
-						<a-textarea :autosize="{ minRows: 4, maxRows: 4 }"></a-textarea>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="相关资料">
+					<a-form-item label="相关资料">
 						<a-upload
 							action="//jsonplaceholder.typicode.com/posts/"
 							:multiple="true"
@@ -108,14 +79,64 @@
 							@change="handleChange"
 						>
 							<a-button>
-								<a-icon type="upload"/>Upload
-							</a-button>
+								<a-icon type="upload"/>文件上传
+							</a-button>&nbsp;&nbsp;支持文件类型：.pdf .jpg .png .doc .docx
 						</a-upload>
 					</a-form-item>
-					<a-form-item :wrapper-col="{ span: 22,offset: 2 }">
-						<a-button type="primary">提交</a-button>
+					<a-form-item style="display:block;text-align:right;">
+						<a-button style="margin-right:12px;" @click="confirmCancel">取消</a-button>
+						<a-button type="primary">保存</a-button>
 					</a-form-item>
 				</a-form>
+				<!-- </a-tab-pane> -->
+				<!-- <a-tab-pane tab="订单内容" key="2" forceRender>
+						<a-form :form="form">
+							<a-form-item  label="产品内容">
+								<a-table :pagination="false" :columns="columns" :dataSource="data" bordered rowKey="id">
+									<template
+										v-for="col in ['deviceNo', 'deviceName', 'deviceState','organizeName', 'location', 'locationNo','deviceCategoryName', 'workerNames']"
+										:slot="col"
+										slot-scope="text, record, index"
+									>
+										<div :key="col">
+											<a-input
+												style="margin: -5px 0"
+												:value="text"
+												@change="e => handleChangeTable(e.target.value, record.id, col)"
+											/>
+										</div>
+									</template>
+									<template slot="deviceModel" slot-scope="text, record, index">
+										<div>
+											<a-date-picker style="width:100%"/>
+										</div>
+									</template>
+									<template slot="operation" slot-scope="text, record, index">
+										<div class="editable-row-operations">
+											<span class="handle_style">
+												<a-popconfirm title="确定删除吗？" @confirm="onDelete(record.id)" okText="确定" cancelText="取消">
+													<a-popover placement="top">
+														<template slot="content">
+															<span>删除</span>
+														</template>
+														<a-icon type="delete" style="color:red;"/>
+													</a-popover>
+												</a-popconfirm>
+											</span>
+										</div>
+									</template>
+								</a-table>
+								<span @click="handleAdd" style=" cursor: pointer;" class="handle_table">
+									<a-icon type="plus-circle"/>&nbsp;添加一行
+								</span>
+							</a-form-item>
+							<a-form-item :wrapper-col="{ span: 22,offset: 2 }">
+								<a-button style="margin-right:12px;">取消</a-button>
+								<a-button type="primary">提交</a-button>
+							</a-form-item>
+						</a-form>
+				</a-tab-pane>-->
+				<!-- </a-tabs> -->
 			</div>
 		</a-row>
 	</div>
@@ -292,7 +313,7 @@ const productionRisk = [
 	},
 	{
 		value: 5,
-		label: "取消"
+		label: "其他"
 	}
 ];
 export default {
@@ -317,6 +338,9 @@ export default {
 		};
 	},
 	methods: {
+		confirmCancel() {
+			this.$emit("changeAddModal", false);
+		},
 		onDelete(key) {
 			// if (this.selectedRowKeys.length < 1) {
 			// 	this.$message.error("请选择要删除的项！");
@@ -358,10 +382,13 @@ export default {
 </script>
 <style lang="less">
 .add_order {
+	.ant-form-item-label {
+		width: 120px;
+	}
 	.content_case {
-		padding: 12px 0;
-		width: 80%;
-		margin-left: 5%;
+		// padding: 12px 0;
+		// width: 80%;
+		// margin-left: 5%;
 		h4 {
 			padding: 0 14px;
 		}

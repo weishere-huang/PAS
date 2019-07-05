@@ -23,9 +23,14 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [{
+      path: '/Enterprise',
+      name: 'Enterprise',
+      components: require('../components/enterprise/index.vue')
+    },
+    {
       path: '/Dashboard',
       name: 'Dashboard',
-      component: Dashboard
+      components: require('../components/public/PersonnelAdd.vue')
     },
     {
       path: '/OrderList',
@@ -43,7 +48,6 @@ export default new Router({
         },
       ]
     },
-
     {
       path: '/MyDevice',
       name: 'MyDevice',
@@ -116,6 +120,16 @@ export default new Router({
       path: '/Subcontract',
       name: 'Subcontract',
       component: Subcontract
+    },
+    {
+      path: '/WorkOrderList',
+      name: 'WorkOrderList',
+      components: require('@/components/workOrder/WorkOrderList.vue'),
+      children: [{
+        path: 'TransferOrder/:id/',
+        name: 'TransferOrder',
+        components: require('../components/workOrder/transferForm/TransferForm.vue')
+      }, ]
     },
   ]
 })

@@ -1,5 +1,5 @@
 <template>
-	<div class="order_list">
+	<div class="enterprise_list">
 		<router-view></router-view>
 		<div :class="[{hide:isHideList}]">
 			<a-row>
@@ -19,19 +19,6 @@
 									</a-button>
 								</a-popconfirm>
 							</a-col>
-
-							<a-col :span="16" style="text-align:right">
-								<a-select placeholder="请选择" optionFilterProp="children" style="width:100px;">
-									<a-select-option value="1">全部</a-select-option>
-									<a-select-option value="2">待生产</a-select-option>
-									<a-select-option value="3">生产中</a-select-option>
-									<a-select-option value="4">暂停中</a-select-option>
-									<a-select-option value="5">已终止</a-select-option>
-									<a-select-option value="6">完成</a-select-option>
-								</a-select>
-								<a-input type="text" style="width:300px" placeholder="根据设备编号/标题/客户名称/备注"></a-input>
-								<a-button type="primary">查询</a-button>
-							</a-col>
 						</div>
 					</a-row>
 					<a-row style="padding-top:10px;">
@@ -42,55 +29,13 @@
 							:dataSource="data"
 							:rowSelection="rowSelection"
 						>
-							<template slot="deviceModel" slot-scope="text, record, index">
-								<div>
-									<template slot="content">
-										<span>生产中</span>
-									</template>
-									<i v-if="text==0" class="iconfont" style="color:#10CF0C;">
-										&#xe61d;
-										<span style="font-size:14px;">生产中</span>
-									</i>
-
-									<template slot="content">
-										<span>待生产</span>
-									</template>
-									<i v-if="text==1" class="iconfont" style="color:#F59A23;">
-										&#xe600;
-										<span style="font-size:14px;">待生产</span>
-									</i>
-
-									<template slot="content">
-										<span>暂停</span>
-									</template>
-									<i v-if="text==2" class="iconfont" style="color:#027DB4;">
-										&#xe6b4;
-										<span style="font-size:14px;">暂停</span>
-									</i>
-
-									<template slot="content">
-										<span>终止</span>
-									</template>
-									<i v-if="text==3" class="iconfont" style="color:#E02D2D;">
-										&#xe61a;
-										<span style="font-size:14px;">终止</span>
-									</i>
-
-									<template slot="content">
-										<span>完成</span>
-									</template>
-									<i v-if="text==4" class="iconfont" style="color:#D8D8D8;">
-										&#xe624;
-										<span style="font-size:14px;">完成</span>
-									</i>
-								</div>
-							</template>
-							<template slot="workerNames" slot-scope="text, record, index">
-								<div>
-									<a-tag v-if="text==0" color="#F59A23">待审批</a-tag>
-									<a-tag v-if="text==1" color="#D8D8D8">已审批</a-tag>
-									<a-tag v-if="text==2" color="#8400FF">被驳回</a-tag>
-								</div>
+							<template slot="deviceState" slot-scope="text, record, index">
+								<a-switch
+									checkedChildren="启用"
+									unCheckedChildren="禁用"
+									:defaultChecked="text==1"
+									@change="changeState(record,index)"
+								/>
 							</template>
 						</a-table>
 						<a-pagination
@@ -109,81 +54,71 @@
 			</a-row>
 		</div>
 		<a-modal
-			title="新增订单"
+			title="新增企业"
 			:footer="null"
-			width="1000px"
+			width="600px"
 			:visible="addVisible"
 			@cancel="handleCancel(1)"
 			:maskClosable="false"
 		>
-			<add-order v-on:changeAddModal="changeAddModal"></add-order>
+			<add-enterprise v-on:changeAddModal="changeAddModal"></add-enterprise>
 		</a-modal>
 		<a-modal
-			title="修改订单"
+			title="修改企业"
 			:footer="null"
-			width="1000px"
+			width="600px"
 			:visible="editVisible"
 			@cancel="handleCancel(2)"
 			:maskClosable="false"
 		>
-			<edit-order v-on:changeEditModal="changeEditModal"></edit-order>
+			<edit-enterprise v-on:changeEditModal="changeEditModal"></edit-enterprise>
 		</a-modal>
 	</div>
 </template>
-
 <script>
-import AddOrder from "./OrderAdd";
-import EditOrder from "./OrderEdit";
 const columns = [
 	{
 		dataIndex: "deviceNo",
-		title: "订单编号",
+		title: "企业ID",
 		width: 90,
 		key: "deviceNo"
 	},
 	{
 		dataIndex: "deviceName",
-		title: "订单标题",
-		width: 120,
+		title: "企业名称",
+		width: 180,
 		key: "deviceName"
 	},
 	{
 		dataIndex: "deviceCategoryName",
 		key: "deviceCategoryName",
-		title: "生产进度",
-		width: 70
+		title: "联系人",
+		width: 90
 	},
 	{
 		dataIndex: "organizeName",
 		key: "organizeName",
-		title: "订单类型",
-		width: 160
-	},
-	{
-		dataIndex: "deviceModel",
-		key: "deviceModel",
-		title: "客户名称",
-		width: 70,
-		scopedSlots: { customRender: "deviceModel" }
-	},
-	{
-		dataIndex: "deviceState",
-		key: "deviceState",
-		title: "风险预警",
-		width: 80,
-		scopedSlots: { customRender: "deviceState" }
+		title: "手机号",
+		width: 120
 	},
 	{
 		dataIndex: "locationNo",
 		key: "locationNo",
-		title: "备注",
+		title: "企业账号",
 		width: 120
+	},
+	{
+		dataIndex: "deviceState",
+		key: "deviceState",
+		title: "启用状态",
+		width: 80,
+		scopedSlots: { customRender: "deviceState" }
 	},
 	{
 		dataIndex: "location",
 		key: "location",
 		title: "创建时间",
-		width: 80
+		width: 120
 	}
 ];
 const data = [
@@ -191,7 +126,7 @@ const data = [
 		id: "0",
 		deviceNo: "111",
 		deviceName: "11",
-		deviceState: "11",
+		deviceState: "1",
 		organizeName: "11",
 		location: "11",
 		locationNo: "11",
@@ -239,6 +174,8 @@ const rowSelection = {
 		console.log(selected, selectedRows, changeRows);
 	}
 };
+import AddEnterprise from "./Add";
+import EditEnterprise from "./edit";
 export default {
 	name: "orderList",
 	data() {
@@ -246,7 +183,6 @@ export default {
 			rowSelection,
 			addVisible: false,
 			editVisible: false,
-			form: this.$form.createForm(this),
 			isHideList: this.$route.params.id !== undefined ? true : false,
 			columns,
 			data,
@@ -271,8 +207,8 @@ export default {
 				this.editVisible = false;
 			}
 		},
-		moreOperation({ key }) {
-			console.log(key);
+		changeState(row, index) {
+			console.log(row, index);
 		},
 		confirm(e) {
 			console.log(e);
@@ -290,7 +226,7 @@ export default {
 			console.log("第几页: ", current);
 			this.current = current;
 		},
-		edit() {
+		edit(record, text, index) {
 			// this.$router.push({ path: "/OrderList/OrderEdit/" + record.id });
 			this.editVisible = true;
 		}
@@ -312,20 +248,12 @@ export default {
 		}
 	},
 	components: {
-		AddOrder,
-		EditOrder
+		AddEnterprise,
+		EditEnterprise
 	}
 };
 </script>
 <style lang="less">
-.order_list {
-	i {
-		font-size: 16px;
-	}
-	a {
-		&:hover {
-			text-decoration: underline;
-		}
-	}
+.enterprise_list {
 }
 </style>

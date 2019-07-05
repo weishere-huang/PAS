@@ -25,9 +25,20 @@
 					<a-row>
 						<div style="line-height:50px;">
 							<a-col :span="8">
-								<a-button type="primary" @click="$router.push({path:'/MyDevice/AddEquipment'})">
+								<!-- <a-button type="primary" @click="$router.push({path:'/MyDevice/AddEquipment'})">
 									<a-icon type="plus-circle"/>新增
+								</a-button>-->
+								<a-button @click="$router.push({path:'/MyDevice/AddEquipment'})">
+									<a-icon style="color:#1890ff;" type="plus"/>新增
 								</a-button>
+								<a-button @click="edit">
+									<a-icon style="color:#1890ff;" type="edit"/>修改
+								</a-button>
+								<a-popconfirm title="确定删除吗?" @confirm="() => onDelete()">
+									<a-button>
+										<a-icon style="color:#1890ff;" type="delete"/>删除
+									</a-button>
+								</a-popconfirm>
 							</a-col>
 							<a-col :span="16" style="text-align:right">
 								关键字：
@@ -152,59 +163,40 @@ const columns = [
 	},
 	{
 		dataIndex: "deviceName",
-		title: "设备名称",
+		title: "名称",
 		width: 120,
 		key: "deviceName"
 	},
 	{
 		dataIndex: "deviceState",
 		key: "deviceState",
-		title: "设备状况",
+		title: "规格型号",
 		width: 70,
 		scopedSlots: { customRender: "deviceState" }
 	},
 	{
 		dataIndex: "organizeName",
 		key: "organizeName",
-		title: "所属部门",
+		title: "分类",
 		width: 160
 	},
 	{
 		dataIndex: "location",
 		key: "location",
-		title: "安装位置",
+		title: "类别",
 		width: 80
 	},
 	{
 		dataIndex: "locationNo",
 		key: "locationNo",
-		title: "设备位号",
+		title: "所处班组",
 		width: 80
 	},
 	{
 		dataIndex: "deviceCategoryName",
 		key: "deviceCategoryName",
-		title: "设备类别",
+		title: "状态",
 		width: 70
-	},
-	{
-		dataIndex: "deviceModel",
-		key: "deviceModel",
-		title: "设备型号",
-		width: 100
-	},
-	{
-		dataIndex: "workerNames",
-		key: "workerNames",
-		title: "负责人",
-		width: 60
-	},
-	{
-		dataIndex: "operation",
-		key: "operation",
-		title: "操作",
-		width: 80,
-		scopedSlots: { customRender: "operation" }
 	}
 ];
 const data = [
@@ -267,7 +259,7 @@ export default {
 		};
 	},
 	methods: {
-		confirm(e) {
+		onDelete(e) {
 			console.log(e);
 			this.$message.success("Click on Yes");
 		},

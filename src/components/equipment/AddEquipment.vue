@@ -7,89 +7,123 @@
 		<a-row>
 			<div class="content_case">
 				<a-form :form="form">
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="设备编号">
-						<a-input></a-input>
+					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="新增方式">
+						<a-radio-group v-model="addType">
+							<a-radio :value="1">手动创建</a-radio>
+							<a-radio :value="2">第三方接入</a-radio>
+						</a-radio-group>
 					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="设备名称">
-						<a-input></a-input>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="规格型号">
-						<a-input></a-input>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="设备分类">
-						<a-select placeholder="请选择" optionFilterProp="children">
-							<a-select-option
-								v-for="(item, index) in deviceClassigy"
-								:key="index"
-								:value="item.value"
-							>{{item.label}}</a-select-option>
-						</a-select>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="设备类别">
-						<a-select showSearch placeholder="请选择" optionFilterProp="children">
-							<a-select-option v-for="(item, index) in 10" :key="index" :value="item">{{item}}</a-select-option>
-						</a-select>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="所属机构">
-						<a-tree-select
-							:dropdownStyle="{ maxHeight: '400px', overflow: 'auto' }"
-							:treeData="treeData"
-							placeholder="请选择"
-							treeDefaultExpandAll
-						>
-							<span slot="title" slot-scope="{key, value}">{{value}}</span>
-						</a-tree-select>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="设备状态">
-						<a-select showSearch placeholder="请选择" optionFilterProp="children">
-							<a-select-option
-								v-for="(item, index) in deviceState"
-								:key="index"
-								:value="item.value"
-							>{{item.label}}</a-select-option>
-						</a-select>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="负责人">
-						<a-select mode="multiple" style="width: 100%" placeholder="请选择">
-							<a-select-option v-for="i in 25" :key="(i + 9).toString(36) + i">{{(i + 9).toString(36) + i}}</a-select-option>
-						</a-select>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="安装地点">
-						<a-input></a-input>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="生产商">
-						<a-input></a-input>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="生产商">
-						<a-input></a-input>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="生产日期">
-						<a-date-picker style="width:100%"/>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="购买日期">
-						<a-date-picker style="width:100%"/>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="购买价格">
-						<a-input></a-input>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="保修截止日期">
-						<a-date-picker style="width:100%"/>
-					</a-form-item>
-					<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="相关资料">
-						<a-upload
-							action="//jsonplaceholder.typicode.com/posts/"
-							:multiple="true"
-							:fileList="fileList"
-							@change="handleChange"
-						>
-							<a-button>
-								<a-icon type="upload"/>Upload
-							</a-button>
-						</a-upload>
-					</a-form-item>
-					<a-form-item :wrapper-col="{ span: 22,offset: 2 }">
-						<a-button type="primary">提交</a-button>
-					</a-form-item>
+					<div v-if="addType==1">
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="设备编号">
+							<a-input></a-input>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="设备名称">
+							<a-input></a-input>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="规格型号">
+							<a-input></a-input>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="设备分类">
+							<a-select placeholder="请选择" optionFilterProp="children">
+								<a-select-option
+									v-for="(item, index) in deviceClassigy"
+									:key="index"
+									:value="item.value"
+								>{{item.label}}</a-select-option>
+							</a-select>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="设备类别">
+							<a-select showSearch placeholder="请选择" optionFilterProp="children">
+								<a-select-option v-for="(item, index) in 10" :key="index" :value="item">{{item}}</a-select-option>
+							</a-select>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="所属机构">
+							<a-tree-select
+								:dropdownStyle="{ maxHeight: '400px', overflow: 'auto' }"
+								:treeData="treeData"
+								placeholder="请选择"
+								treeDefaultExpandAll
+							>
+								<span slot="title" slot-scope="{key, value}">{{value}}</span>
+							</a-tree-select>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="设备状态">
+							<a-select showSearch placeholder="请选择" optionFilterProp="children">
+								<a-select-option
+									v-for="(item, index) in deviceState"
+									:key="index"
+									:value="item.value"
+								>{{item.label}}</a-select-option>
+							</a-select>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="负责人">
+							<a-select mode="multiple" style="width: 100%" placeholder="请选择">
+								<a-select-option
+									v-for="i in 25"
+									:key="(i + 9).toString(36) + i"
+								>{{(i + 9).toString(36) + i}}</a-select-option>
+							</a-select>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="安装地点">
+							<a-input></a-input>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="生产商">
+							<a-input></a-input>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="供应商">
+							<a-input></a-input>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="生产日期">
+							<a-date-picker style="width:100%"/>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="购买日期">
+							<a-date-picker style="width:100%"/>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="购买价格">
+							<a-input></a-input>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="保修截止日期">
+							<a-date-picker style="width:100%"/>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="相关资料">
+							<a-upload
+								action="//jsonplaceholder.typicode.com/posts/"
+								:multiple="true"
+								:fileList="fileList"
+								@change="handleChange"
+							>
+								<a-button>
+									<a-icon type="upload"/>Upload
+								</a-button>
+							</a-upload>
+						</a-form-item>
+						<a-form-item :wrapper-col="{ span: 22,offset: 2 }">
+							<a-button type="primary">提交</a-button>
+						</a-form-item>
+					</div>
+					<div v-if="addType==2">
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="接入平台">
+							<a-select placeholder="请选择" optionFilterProp="children">
+								<a-select-option
+									v-for="(item, index) in deviceClassigy"
+									:key="index"
+									:value="item.value"
+								>{{item.label}}</a-select-option>
+							</a-select>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="接入平台">
+							<a-input></a-input>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="API key">
+							<a-input></a-input>
+						</a-form-item>
+						<a-form-item :label-col=" { span: 2 }" :wrapper-col="{ span: 22 }" label="API Secret">
+							<a-input></a-input>
+						</a-form-item>
+						<a-form-item :wrapper-col="{ span: 22,offset: 2 }">
+							<a-button type="primary" @click="verification">验证</a-button>
+						</a-form-item>
+					</div>
 				</a-form>
 			</div>
 		</a-row>
@@ -170,6 +204,7 @@ const deviceState = [
 export default {
 	data() {
 		return {
+			addType: 1,
 			form: this.$form.createForm(this),
 			treeData,
 			deviceClassigy,
@@ -185,6 +220,9 @@ export default {
 		};
 	},
 	methods: {
+		verification() {
+			this.$message.error("验证失败！");
+		},
 		handleChange(value) {
 			console.log(`selected ${value}`);
 		}
